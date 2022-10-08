@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static helpers.AllureRestAssuredFilter.withCustomTemplates;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -83,7 +84,6 @@ public class KazanExpressTest  {
     }
 
     @Test
-    @DisplayName("Ищем товар")
     void product() {
 
         String body = "{\"id\": \"250186\", \"title\": \"Велосипедки женские, шорты спортивные\" }";
@@ -103,7 +103,6 @@ public class KazanExpressTest  {
         assertNotEquals(response.getId(),"250186" );
     }
     @Test
-    @DisplayName("")
     void postRegisterUserSuccess() {
         String body = "{\"id\": \"250186\", \"title\": \"Велосипедки женские, шорты спортивные\" }";
 
@@ -113,10 +112,11 @@ public class KazanExpressTest  {
                 .body(body)
                 .when()
                 .log().all()// Раскроет всё тело запроса
+                .get("/v2/product/250186")
                 .then()
                 .log().all()
                 .spec(responseSpec200)
-                .body("id", is(250186));
+                .body("payload", notNullValue());
     }
 
 }
