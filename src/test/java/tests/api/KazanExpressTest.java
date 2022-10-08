@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static helpers.AllureRestAssuredFilter.withCustomTemplates;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static helpers.Specs.*;
@@ -101,4 +102,21 @@ public class KazanExpressTest  {
 
         assertNotEquals(response.getId(),"250186" );
     }
+    @Test
+    @DisplayName("")
+    void postRegisterUserSuccess() {
+        String body = "{\"id\": \"250186\", \"title\": \"Велосипедки женские, шорты спортивные\" }";
+
+        given()
+                .spec(request)
+                .filter(withCustomTemplates())
+                .body(body)
+                .when()
+                .log().all()// Раскроет всё тело запроса
+                .then()
+                .log().all()
+                .spec(responseSpec200)
+                .body("id", is(250186));
+    }
+
 }
