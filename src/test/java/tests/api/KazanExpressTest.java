@@ -3,8 +3,6 @@ package tests.api;
 import config.User;
 
 
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 
 import org.junit.jupiter.api.Test;
@@ -12,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import static helpers.AllureRestAssuredFilter.withCustomTemplates;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static helpers.Specs.*;
@@ -20,9 +17,6 @@ import static helpers.Specs.*;
 
 public class KazanExpressTest  {
 
-    @BeforeAll
-    public static void setup() {
-        RestAssured.filters(withCustomTemplates());}
 
     @Test
     @DisplayName("Добавить товар")
@@ -31,7 +25,7 @@ public class KazanExpressTest  {
         User user = new User();
         User response = given()
                 .spec(request)
-                .when()
+                .filter(withCustomTemplates())
                 .get("/v2/product/1875667")
                 .then()
                 .spec(responseSpec200)
@@ -51,6 +45,7 @@ public class KazanExpressTest  {
 
         User response = given()
                 .spec(request)
+                .filter(withCustomTemplates())
                 .body(user)
                 .when()
                 .post("/oauth/token")
@@ -72,6 +67,7 @@ public class KazanExpressTest  {
 
        User response = given()
                 .spec(request)
+               .filter(withCustomTemplates())
                 .body(user)
                 .when()
                 .post("/oauth/token")
@@ -93,6 +89,7 @@ public class KazanExpressTest  {
 
         User response = given()
                 .spec(request)
+                .filter(withCustomTemplates())
                 .body(body)
                 .when()
                 .log().all()
