@@ -45,9 +45,8 @@ public class KazanExpressDriver implements WebDriverProvider {
     }
     private File getApp() {
 
-        String appUrl = "https://apkpure.com/ru/kazanexpress-%E2%80%94-" +
-                "%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%BF%D0%BB%D0%B5%D0%B9%D1%81/com.kazanexpress.ke_app/download";
-        String appPath = "src/test/resources/apps/KazanExpress — Маркетплейс_v1.22.1_apkpure.com.apk";
+        String appUrl = "https://trashbox.ru/files30/1708621/com.kazanexpress.ke_app_1.22.2_7800.apk/";
+        String appPath = "src/test/resources/apps/com.kazanexpress.ke_app_1.22.2_7800.apk";
 
         File app = new File(appPath);
         if (!app.exists()) {
