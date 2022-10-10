@@ -15,10 +15,10 @@ public class KazanExpressTest extends TestBase {
     @Test
     @DisplayName("Запускаем приложение")
     void loadingTheGameTest() {
-
+        back();
         step("Запускаем игру и нажимаем на всех всплывающих окнах ОК ", () ->
                 $(AppiumBy.id("com.kazanexpress.ke_app:id/pageIndicatorView")).click());
-                $(AppiumBy.xpath("//android.widget.Button[@text='OK' and @index='2']")).click();
+                $(AppiumBy.xpath("//android.view.View[@index='1']")).click();
         step("Проверяем что игра загрузилась  ", () ->
                 $(AppiumBy.xpath("//android.widget.FrameLayout[@index='0']")).shouldBe(Condition.visible));
     }

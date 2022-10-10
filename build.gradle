@@ -48,7 +48,9 @@ dependencies {
             "org.slf4j:slf4j-simple:$slf4jVersion",
             "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
             "io.appium:java-client:$appiumVersion",
-            "commons-io:commons-io:$commonsIoVersion"
+            "commons-io:commons-io:$commonsIoVersion",
+            "org.junit.jupiter:junit-jupiter-engine:5.6.2",
+            "org.junit.jupiter:junit-jupiter-params:5.6.2"
     )
 }
 compileTestJava {

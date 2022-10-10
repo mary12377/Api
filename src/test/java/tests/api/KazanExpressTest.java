@@ -7,11 +7,10 @@ import org.junit.jupiter.api.DisplayName;
 
 import org.junit.jupiter.api.Test;
 
-
+import static org.hamcrest.Matchers.notNullValue;
 import static helpers.AllureRestAssuredFilter.withCustomTemplates;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static helpers.Specs.*;
@@ -84,7 +83,7 @@ public class KazanExpressTest  {
     }
 
     @Test
-    void product() {
+    void productIdTest() {
 
         String body = "{\"id\": \"250186\", \"title\": \"Велосипедки женские, шорты спортивные\" }";
 
@@ -102,14 +101,13 @@ public class KazanExpressTest  {
 
         assertNotEquals(response.getId(),"250186" );
     }
+
     @Test
-    void postRegisterUserSuccess() {
-        String body = "{\"id\": \"250186\", \"title\": \"Велосипедки женские, шорты спортивные\" }";
+    void requestProduct() {
 
         given()
                 .spec(request)
                 .filter(withCustomTemplates())
-                .body(body)
                 .when()
                 .log().all()// Раскроет всё тело запроса
                 .get("/v2/product/250186")
@@ -118,5 +116,4 @@ public class KazanExpressTest  {
                 .spec(responseSpec200)
                 .body("payload", notNullValue());
     }
-
 }

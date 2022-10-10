@@ -36,7 +36,7 @@ public class TestBase {
        else {
            Configuration.browser = KazanExpressDriver.class.getName();
        }
-           Configuration.timeout = 30000;
+           Configuration.timeout=5000;
            Configuration.browserSize = null;
     }
 
